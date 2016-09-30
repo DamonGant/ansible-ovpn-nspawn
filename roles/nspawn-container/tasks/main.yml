@@ -1,0 +1,7 @@
+---
+- command: cp -r "/usr/share/{{vmos}}root/" "/var/lib/machines/{{machine_id}}" creates="/var/lib/machines/{{machine_id}}"
+- template: src="in-container.network.j2" dest="/var/lib/machines/{{machine_id}}/lib/systemd/network/80-container-host0.network"
+- template: src="container.network.j2" dest="/etc/systemd/network/80-container-ve-{{machine_id}}.network"
+- file: path=/var/lib/machines/{{machine_id}}/etc/systemd/system/multi-user.target.wants/systemd-networkd.service force=yes src=/lib/systemd/system/systemd-networkd.service state=link
+- service: enabled=yes state=restarted name="systemd-networkd"
+- service: enabled=yes state=restarted name="systemd-nspawn@{{machine_id}}"

@@ -1,0 +1,13 @@
+---
+- name: Install openvpn
+  apt: name=openvpn state=latest
+- name: Install CA
+  copy: src=../ca/pki/ca.crt dest=/etc/openvpn/ca.crt
+- name: Install Certificate
+  copy: "src=../ca/pki/issued/{{vpndns}}.crt dest=/etc/openvpn/{{vpndns}}.crt"
+- name: Install Private Key
+  copy: "src=../ca/pki/private/{{vpndns}}.key dest=/etc/openvpn/{{vpndns}}.key"
+- name: Install Diffie-Hellman Parameters
+  copy: "src=../ca/pki/dh.pem dest=/etc/openvpn/dh2048.pem"
+- name: Install Certificate Revocation List
+  copy: "src=../ca/pki/crl.pem dest=/etc/openvpn/crl.pem"

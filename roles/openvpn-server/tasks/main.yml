@@ -1,0 +1,5 @@
+---
+- name: "OpenVPN Server Config"
+  template: src="server.conf.j2" dest="/etc/openvpn/{{vpndns}}.conf"
+- name: "OpenVPN Service"
+  service: name="openvpn@{{vpndns}}" enabled=true state=restarted

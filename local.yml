@@ -1,0 +1,12 @@
+---
+- name: local
+  hosts: local
+  roles:
+   - common
+- name: ai.local
+  hosts: ai.local
+  roles:
+   - openvpn-server
+   - nspawn-common-ubuntu
+   - {role: nspawn-container, machine_id: ub2, vmos: ubuntu, addr: "10.47.1.2/24"}
+   - {role: nspawn-container, machine_id: ub3, vmos: ubuntu, addr: "10.47.1.3/24"}

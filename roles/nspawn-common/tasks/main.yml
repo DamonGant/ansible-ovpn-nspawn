@@ -1,0 +1,6 @@
+---
+- apt: name=systemd-container state=installed
+- file: path=/lib/systemd/network/80-container-ve.network state=absent
+- template: src=local.netdev.j2 dest=/etc/systemd/network/local.netdev
+- template: src=local.network.j2 dest=/etc/systemd/network/local.network
+- template: src="systemd-nspawn.conf.j2" dest="/lib/systemd/system/systemd-nspawn@.service"

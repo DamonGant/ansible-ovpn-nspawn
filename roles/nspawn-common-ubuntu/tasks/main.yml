@@ -1,0 +1,6 @@
+---
+- apt: name=debootstrap state=latest
+- apt: name=ubuntu-keyring state=latest
+- command: debootstrap --arch=amd64 xenial /usr/share/ubunturoot http://archive.ubuntu.com/ubuntu/ creates=/usr/share/ubunturoot/etc/passwd
+- command: chroot /usr/share/ubunturoot/ apt install dbus -y
+- command: chroot /usr/share/ubunturoot/ systemctl enable systemd-networkd

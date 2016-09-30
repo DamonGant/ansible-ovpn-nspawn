@@ -1,0 +1,6 @@
+---
+- name: Bootstrapping Python
+  hosts: all
+  gather_facts: no
+  roles:
+   - bootstrap
